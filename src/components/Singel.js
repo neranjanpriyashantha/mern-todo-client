@@ -4,7 +4,7 @@ import { Button, Card, } from 'react-bootstrap';
 export default function Singel() {
   return (
     <div style={{display:'flex',justifyContent:'center'}}>
-      <Card style={{maxWidth:'500px'}}>
+      <Card style={{maxWidth:'500px',marginTop:'10px'}}>
         <Card.Body>
           <Card.Title>Special title treatment</Card.Title>
           <Card.Text>
@@ -14,7 +14,6 @@ export default function Singel() {
           <Button variant="primary">delate</Button>
         </Card.Body>
       </Card>
-
     </div>
   )
 }
