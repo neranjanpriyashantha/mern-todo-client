@@ -1,12 +1,12 @@
 import React from 'react'
 import Singel from '../components/Singel'
 
-export default function TodoList({ todoData }) {
+export default function TodoList({ todoData,setTodoData }) {
   return (
     <div >
-      {todoData.map((val, key) => {
-        console.log(val)
-        return <Singel key={key} val={val} />
+      {todoData.reverse().map((val, key) => {
+       
+        return <Singel key={key} val={val} setTodoData={setTodoData}  todoData={todoData}/>
       })}
     </div>
   )

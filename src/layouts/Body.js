@@ -9,7 +9,7 @@ export default function Body() {
   useEffect(() => {
     axios.get("http://localhost:5000/read").then((response) => {
       setTodoData(response.data);
-      console.log(todoData);
+      
     }).catch(() => {
       console.log('data fetch error');
     });
@@ -18,10 +18,10 @@ export default function Body() {
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <AddTodo />
+      <div>
+        <AddTodo todoData={todoData} setTodoData={setTodoData} />
       </div>
-      <TodoList todoData={todoData} />
+      <TodoList todoData={todoData} setTodoData={setTodoData} />
     </div>
   )
 }
