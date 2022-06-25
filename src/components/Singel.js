@@ -1,13 +1,16 @@
 import React from 'react'
 import { Button, Card, } from 'react-bootstrap';
 import axios from 'axios';
+import UpdateTodo from './UpdateTodo';
 
-export default function Singel({ val ,setTodoData,todoData}) {
+export default function Singel({ val, setTodoData, todoData }) {
 
-  const updateTodo = (_id) => {
-    const newTitle = prompt("enter new title:");
-      axios.put('http://localhost:5000/update', { newTitle: newTitle, _id: _id })
-      console.log(todoData);
+  const deleteTodo = (_id) => {
+    axios.delete(`http://localhost:5000/delete/${_id}`).then(() => {
+      setTodoData(todoData.filter((val) => {
+        return val._id !==_id;
+      }))
+    })
   }
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -17,13 +20,17 @@ export default function Singel({ val ,setTodoData,todoData}) {
           <Card.Text >
             {val.description}
           </Card.Text>
-          <Button
-            onClick={() => { updateTodo(val._id) }}
-            style={{ marginRight: '5px' }}
-            variant="primary">
-            Update
-          </Button>
-          <Button variant="danger">Delete</Button>
+          <div style={{ display: 'flex' }}>
+            <UpdateTodo val={val} setTodoData={setTodoData} todoData={todoData} />
+            <Button
+              style={{ marginLeft: '5px' }}
+              onClick={() => {
+                deleteTodo(val._id)
+              }}
+              variant="danger">
+              Delete
+            </Button>
+          </div>
         </Card.Body>
       </Card>
     </div>
